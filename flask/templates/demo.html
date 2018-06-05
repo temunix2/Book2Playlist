@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='override.css') }}">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+.myLink {display: none}
+</style>
+<body class="w3-light-grey">
+
+<!-- Navigation Bar -->
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge">
+  <a href="/demo" class="w3-bar-item w3-button w3-text-spotify w3-hover-spotify"><b><i class="fa fa-map-marker w3-margin-right"></i>Book2Playlist</b></a>
+  <a href="/app" class="w3-bar-item w3-button w3-right w3-hover-spotify w3-text-grey"><i class="fa fa-search"></i></a>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+  <img class="w3-image" src="/static/london2.jpg" alt="London" width="1500" height="700">
+  <div class="w3-display-middle" style="width:65%">
+    <div class="w3-bar w3-black">
+      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Manh');"><i class="fa fa-building-o w3-margin-right"></i>Manhattan</button>
+      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Euc');"><i class="fa fa-book w3-margin-right"></i>Euclidean</button>
+      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Cos');"><i class="fa fa-angle-left w3-margin-right"></i>Cosine</button>
+    </div>
+
+    <!-- Tabs -->
+    <form action="/demo">
+    <div id="Manh" class="w3-container w3-white w3-padding-16 myLink">
+      <h3>Type in Book Name to Start...</h3>
+      <div class="w3-row-padding" style="margin:0 -16px;">
+        <div class="w3-half">
+          <label>Chose Your Book</label>
+          <input class="w3-input w3-border" name= "bookname" type="text" placeholder="Enter Book Name">
+        </div>
+        <div class="w3-half">
+          <label>Instrumentals</label>
+          <select name="music" class="w3-select w3-border" id="music">
+            <option value="10" selected> </option>
+            <option value="10">No</option>
+            <option value="11">Yes</option>
+          </select>
+        </div>
+      </div>
+      <p>
+      <button type="submit" value="Submit" method="get" class="w3-button w3-dark-grey" id="btnSubmit"> Create Playlist</button>
+      </p>
+    </div>
+    </form>
+    <form action="/demo">
+    <div id="Euc" class="w3-container w3-white w3-padding-16 myLink">
+       <h3>Type in Book Name to Start...</h3>
+      <div class="w3-row-padding" style="margin:0 -16px;">
+        <div class="w3-half">
+          <label>Chose Your Book</label>
+          <input class="w3-input w3-border" name= "bookname" type="text" placeholder="Enter Book Name">
+        </div>
+        <div class="w3-half">
+          <label>Instrumentals</label>
+          <!--<input class="w3-input w3-border" type="text" placeholder="Instrumentals Only?">-->
+          <select name="music" class="w3-select w3-border" id="music">
+            <option value="20" selected> </option>
+            <option value="20">No</option>
+            <option value="21">Yes</option>
+          </select>
+        </div>
+      </div>
+      <p>
+      <button type="submit" value="Submit" method="get" class="w3-button w3-dark-grey" id="btnSubmit"> Create Playlist</button>
+      </p>
+    </div>
+    </form>
+    <form action="/demo">
+    <div id="Cos" class="w3-container w3-white w3-padding-16 myLink">
+       <h3>Type in Book Name to Start...</h3>
+      <div class="w3-row-padding" style="margin:0 -16px;">
+        <div class="w3-half">
+          <label>Chose Your Book</label>
+          <input class="w3-input w3-border" name= "bookname" type="text" placeholder="Enter Book Name">
+        </div>
+        <div class="w3-half">
+          <label>Instrumentals</label>
+          <!--<input class="w3-input w3-border" type="text" placeholder="Instrumentals Only?">-->
+          <select name="music" class="w3-select w3-border" id="music">
+            <option value="30" selected> </option>
+            <option value="30">No</option>
+            <option value="31">Yes</option>
+          </select>
+        </div>
+      </div>
+      <p>
+        <div>
+      <button type="submit" value="Submit" method="get" class="w3-button w3-dark-grey" id="btnSubmit"> Create Playlist</button>
+    </div>
+      </p>
+  </div>
+    </form>
+</header>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:1100px;">
+
+
+
+  <!-- Contact -->
+  <br><br><br>
+  <div class="w3-container" id="crazy">
+    <h1 align ="center">
+      {{ playlist }}
+    </h1>
+    {% if send_var == " "%}
+    <iframe src='https://open.spotify.com/embed?uri=spotify:user:1243463812:playlist:1mydyJ2yx1lNwCFfPTRwKM&theme=white' width="1100" height="550" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    {% else %}
+    <iframe src= "{{ spot }}"  width="1100" height="550" frameborder="0" allowtransparency="true" allow="encrypted-media" ></iframe>
+    {% endif %}
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-center w3-opacity w3-margin-bottom">
+  <h5>Find Us On</h5>
+  <div class="w3-xlarge w3-padding-16">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+</footer>
+
+<script>
+// Tabs
+function openLink(evt, linkName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("myLink");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-spotify", "");
+  }
+  document.getElementById(linkName).style.display = "block";
+  evt.currentTarget.className += " w3-spotify";
+}
+window.smoothScroll = function(target) {
+    var scrollContainer = target;
+    do { //find scroll container
+        scrollContainer = scrollContainer.parentNode;
+        if (!scrollContainer) return;
+        scrollContainer.scrollTop += 1;
+    } while (scrollContainer.scrollTop == 0);
+
+    var targetY = 0;
+    do { //find the top of target relatively to the container
+        if (target == scrollContainer) break;
+        targetY += target.offsetTop;
+    } while (target = target.offsetParent);
+
+    scroll = function(c, a, b, i) {
+        i++; if (i > 30) return;
+        c.scrollTop = a + (b - a) / 30 * i;
+        setTimeout(function(){ scroll(c, a, b, i); }, 20);
+    }
+    // start scrolling
+    scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+}
+</script>
+
+</body>
+</html>
